@@ -21,5 +21,5 @@ spec:
         backend:
           service:
             name: argocd-server
-            ports:
+            port:
               number: 443
