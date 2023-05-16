@@ -12,8 +12,9 @@ metadata:
 
 
 spec:
+  ingressClassName: "nginx"
   rules:
-  - host: argo.test.io
+  - host: argocd.example.com
     http:
       paths:
       - path: /
