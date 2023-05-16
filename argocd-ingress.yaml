@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argocd-ingress
+  namespace: argocd
   labels:
     name: argocd-ingress
-    namespace: argocd
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
