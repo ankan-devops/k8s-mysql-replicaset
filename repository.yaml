@@ -8,5 +8,5 @@ metadata:
 stringData:
   type: git
   url: https://github.com/ankan-devops/k8s-mysql-replicaset.git
-  password: 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
-  username: ankan-devops
+  password:
+  username:
