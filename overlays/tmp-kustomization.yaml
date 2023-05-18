@@ -1,0 +1,17 @@
+resources:
+- ../deployments
+
+name-suffix: ${{ secrets.github_ref }}
+
+commonLabels:
+  name: Dev-${{ secrets.github_ref }}
+
+patchesJson6902:
+- target:
+    version: v1alpha1
+    kind: Application
+    name: Dev-${{ secrets.github_ref }}
+  patch: |-
+  - op: replace
+    path: /spec/source/targetRevision
+    value: ${{ secrets.github_ref }}
