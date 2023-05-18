@@ -12,7 +12,8 @@ spec:
   selector:
     matchLabels:
       app: mysql-replica
-  updateStrategy: rollingUpdate
+  updateStrategy:
+    type: rollingUpdate
   minReadySeconds: 5
   template:
     metadata:
@@ -23,9 +24,26 @@ spec:
       containers:
       - name: mysql-replica
         image: mysql:8.0.33
-
         resources:
           limits:
             cpu: 512m
           requests:
             cpu: 312m
+        ports:
+        - containerPort: 3306
+
+      volumeMounts:
+      - name: mysql-persistent-storage
+        mountPath: /var/lib/mysql
+
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-persistent-storage
+      annotations:
+        volume.beta.kubernetes.io/storage-class: "mysql-sc"
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: mysql-sc
+      resources:
+        requests:
+          storage: 5Gi

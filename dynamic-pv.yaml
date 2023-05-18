@@ -50,15 +50,15 @@ spec:
           values:
           - minikube-m02
 ---
-kind: persistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: mysql-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: mysql-sc
-  resources:
-    request:
-      storage: 5Gi
----
+# kind: persistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: mysql-pvc
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: mysql-sc
+#   resources:
+#     request:
+#       storage: 5Gi
+# ---
