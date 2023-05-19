@@ -9,6 +9,9 @@ metadata:
     name: applicationset
 spec:
   project: private-project
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/ankan-devops/k8s-mysql-replicaset.git
     targetRevision: argo-create
