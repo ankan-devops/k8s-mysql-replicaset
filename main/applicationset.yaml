@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/ankan-devops/k8s-mysql-replicaset.git
     targetRevision: argo-create
-    path: overlays
+    path: overlays/kustomization*
   syncPolicy:
     automated:
       prune: true
@@ -24,3 +24,9 @@ spec:
     - CreateNamespace=true
     - PrunePropagationPolicy=foreground
     - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
