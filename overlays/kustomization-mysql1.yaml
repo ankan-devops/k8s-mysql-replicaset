@@ -13,7 +13,7 @@ patchesJson6902:
 - target:
     version: v1alpha1
     kind: Application
-    name: Dev-${{ secrets.github_ref }}
+    name: Dev-
   patch: |-
   - op: replace
     path: /spec/source/targetRevision
