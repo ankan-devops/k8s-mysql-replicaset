@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dev
+  name: dev-mysql-replicaset
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: dev
+    name: dev-mysql-replicaset
 spec:
   project: private-project
   source:
     repoURL: https://github.com/ankan-devops/k8s-mysql-replicaset.git
-    targetRevision:
+    targetRevision: mysql-replicaset
     path: overlays
   destination:
     server: https://kubernetes.default.svc
