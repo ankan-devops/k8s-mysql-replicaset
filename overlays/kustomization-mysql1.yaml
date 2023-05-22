@@ -4,10 +4,10 @@ kind: Kustomization
 resources:
   - ../deployments
 
-nameSuffix: -${{ secrets.github_ref }}
+nameSuffix: -mysql-replicaset
 
 commonLabels:
-  name: dev-${{ secrets.github_ref }}
+  name: dev-mysql-replicaset
 
 patchesJson6902:
 - target:
@@ -17,4 +17,4 @@ patchesJson6902:
   patch: |-
   - op: replace
     path: /spec/source/targetRevision
-    value: ${{ secrets.github_ref }}
+    value: mysql-replicaset
