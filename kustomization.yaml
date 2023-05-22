@@ -1,0 +1,3 @@
+resources:
+- dynamic-pv.yaml
+- replica-deployment.yaml
