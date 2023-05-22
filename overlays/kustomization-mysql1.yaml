@@ -7,13 +7,13 @@ resources:
 nameSuffix: ${{ secrets.github_ref }}
 
 commonLabels:
-  name: Dev-${{ secrets.github_ref }}
+  name: dev-${{ secrets.github_ref }}
 
 patchesJson6902:
 - target:
     version: v1alpha1
     kind: Application
-    name: Dev-
+    name: dev-
   patch: |-
   - op: replace
     path: /spec/source/targetRevision
