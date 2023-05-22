@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/ankan-devops/k8s-mysql-replicaset.git
     targetRevision: argo-create
-    path: deployments
+    path: overlays
   syncPolicy:
     automated:
       prune: true
