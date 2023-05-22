@@ -15,7 +15,7 @@ spec:
     path: overlays
   destination:
     server: https://kubernetes.default.svc
-    namespace: develop
+    namespace: mysql-replicaset
   syncPolicy:
     automated:
       prune: true
