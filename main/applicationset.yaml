@@ -13,8 +13,6 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    directory:
-      recurse: true
     repoURL: https://github.com/ankan-devops/k8s-mysql-replicaset.git
     targetRevision: argo-create
     path: overlays

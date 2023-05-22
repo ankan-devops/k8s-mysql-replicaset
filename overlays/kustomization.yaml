@@ -4,11 +4,6 @@ kind: Kustomization
 resources:
 - ../../deployments
 
-nameSuffix: -mysql-replicaset
-
-commonLabels:
-  name: dev-mysql-replicaset
-
 patchesJson6902:
 - target:
     version: v1alpha1
@@ -18,3 +13,9 @@ patchesJson6902:
     - op: add
       path: /spec/source/targetRevision
       value: mysql-replicaset
+    - op: replace
+      path: /metadata/name
+      value: dev-mysql-replicaset
+    - op: replace
+      path: /metadata/labels/0/name
+    - value: dev-mysql-replicaset
