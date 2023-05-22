@@ -15,6 +15,6 @@ patchesJson6902:
     kind: Application
     name: dev-${{ secrets.github_ref }}
   patch: |-
-  - op: add
-    path: /spec/source/targetRevision
-    value: ${{ secrets.github_ref }}
+    - op: add
+      path: /spec/source/targetRevision
+      value: ${{ secrets.github_ref }}

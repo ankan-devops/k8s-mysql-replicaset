@@ -15,6 +15,6 @@ patchesJson6902:
     kind: Application
     name: dev-mysql-replicaset
   patch: |-
-  - op: add
-    path: /spec/source/targetRevision
-    value: mysql-replicaset
+    - op: add
+      path: /spec/source/targetRevision
+      value: mysql-replicaset
