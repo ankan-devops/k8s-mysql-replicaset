@@ -13,7 +13,7 @@ patchesJson6902:
 - target:
     version: v1alpha1
     kind: Application
-    name: dev
+    name: dev-mysql-replicaset
   patch: |-
   - op: add
     path: /spec/source/targetRevision
