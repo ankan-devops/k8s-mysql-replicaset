@@ -30,6 +30,9 @@ spec:
             cpu: 312m
         ports:
         - containerPort: 3306
+        envFrom:
+        - secretRef:
+           name: mysql-secret
 
       volumeMounts:
       - name: mysql-persistent-storage
