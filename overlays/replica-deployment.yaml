@@ -34,9 +34,9 @@ spec:
         - secretRef:
            name: mysql-secret
 
-      volumeMounts:
-      - name: mysql-persistent-storage
-        mountPath: /var/lib/mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
 
   volumeClaimTemplates:
   - metadata:
