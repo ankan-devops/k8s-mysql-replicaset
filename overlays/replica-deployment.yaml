@@ -38,7 +38,7 @@ spec:
         - /bin/sh
         - -c
         - |
-          mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$HOSTNAME
+          mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1))
 
 
         volumeMounts:
