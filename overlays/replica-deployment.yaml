@@ -35,6 +35,8 @@ spec:
            name: mysql-secret
 
         command:
+        - /bin/sh
+        - -c
         - |
           mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$HOSTNAME
 
