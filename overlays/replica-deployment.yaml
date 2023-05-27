@@ -44,7 +44,7 @@ spec:
           else
             mysqld --initialize
             touch /admin-user.sh;
-            exit 1;
+            #exit 1;
           fi
 
         volumeMounts:
