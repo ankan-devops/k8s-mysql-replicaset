@@ -42,6 +42,7 @@ spec:
           if [ -f /admin-user.sh ]; then
             mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
           else
+            mysqld --initialize
             touch /admin-user.sh;
             exit 1;
           fi
