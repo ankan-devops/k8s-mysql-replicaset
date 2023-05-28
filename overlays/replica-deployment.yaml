@@ -45,6 +45,8 @@ spec:
           postStart:
             exec:
               command:
+              - /bin/sh
+              - -c
               - |
                 sleep 10;
                 if [ ! -f /admin-user.sh ]; then
