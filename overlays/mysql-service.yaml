@@ -10,7 +10,6 @@ spec:
   publishNotReadyAddresses: true
   clusterIP: None
   ports:
-    - name: http
-      protocol: http
+    - protocol: tcp
       port: 3306
       targetPort: 3306
