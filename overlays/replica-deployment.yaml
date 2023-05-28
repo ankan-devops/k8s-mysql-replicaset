@@ -45,6 +45,7 @@ spec:
           postStart:
             exec:
               command:
+              - |
                 sleep 10;
                 if [ ! -f /admin-user.sh ]; then
                 if [ $HOSTNAME == 'mysql-replica-0' ]; then
