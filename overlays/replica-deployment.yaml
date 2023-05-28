@@ -48,7 +48,7 @@ spec:
               - /bin/sh
               - -c
               - |
-                sleep 10;
+                sleep 30;
                 if [ ! -f /admin-user.sh ]; then
                 if [ $HOSTNAME == 'mysql-replica-0' ]; then
                   mysqlsh -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
