@@ -42,7 +42,7 @@ spec:
           if mysql -u root -p${MYSQL_ROOT_PASSWORD} -e exit; then
             mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
           else
-            exit 1;
+            exit 1; fi;
         #   if [ ! -f /admin-user.sh ]; then
         #   if [ $HOSTNAME == 'mysql-replica-0' ]; then
         #     mysqlsh -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")'
