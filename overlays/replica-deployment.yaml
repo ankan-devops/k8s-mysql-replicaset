@@ -53,7 +53,7 @@ spec:
                 if [ $HOSTNAME == 'mysql-replica-0' ]; then
                   mysqlsh -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
                   touch /admin-user.sh;
-                fi;
+                fi; fi;
 
         volumeMounts:
         - name: mysql-persistent-storage
