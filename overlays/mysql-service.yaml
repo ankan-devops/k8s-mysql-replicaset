@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     app: mysql-replica
-  publishNotReadyAddresses: true
+  #publishNotReadyAddresses: true
   clusterIP: None
   ports:
     - protocol: TCP
