@@ -39,14 +39,8 @@ spec:
         - /bin/sh
         - -c
         - |
+          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
 
-          if [ ! -z "$(ls -A /var/lib/mysql)" ]; then
-            docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
-          else
-            echo "True";
-            docker-entrypoint.sh mysqld;
-            exit 1;
-          fi;
         #   if [ ! -f /admin-user.sh ]; then
         #   if [ $HOSTNAME == 'mysql-replica-0' ]; then
         #     mysqlsh -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")'
