@@ -6,7 +6,7 @@ metadata:
 
 data:
   mysql-script.sh: |
-    #!/bin/bash
+    #!/bin/sh
     sleep 200;
     if [ ! -f /var/lib/mysql/admin-user.sh ]; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then

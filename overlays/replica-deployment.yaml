@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-replica
-        image: mysql:8.0.33-debian
+        image: mysql:8.0.33
         resources:
           limits:
             cpu: 512m
@@ -36,7 +36,7 @@ spec:
            name: mysql-secret
 
         command:
-        - /bin/bash
+        - /bin/sh
         - -c
         - |
           /initial-script/mysql-script.sh &
