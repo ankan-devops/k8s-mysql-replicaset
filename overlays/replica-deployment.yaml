@@ -39,6 +39,7 @@ spec:
         - /bin/sh
         - -c
         - |
+          chmod -R 777 /initial-script;
           docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
 
         lifecycle:
