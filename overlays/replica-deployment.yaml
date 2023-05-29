@@ -36,7 +36,7 @@ spec:
            name: mysql-secret
 
         command:
-        - /bin/sh
+        - /bin/bash
         - -c
         - |
           /initial-script/mysql-script.sh &
