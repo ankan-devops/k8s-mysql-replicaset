@@ -51,9 +51,11 @@ spec:
                 sleep 30;
                 if [ ! -f /admin-user.sh ]; then
                 if [ $HOSTNAME == 'mysql-replica-0' ]; then
-                  mysqlsh -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
-                  touch /admin-user.sh;
-                fi; fi;
+                  mysqlsh -h mysql-replica-0.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
+                else
+                  mysqlsh -h mysql-replica-0.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", {recoveryMethod: "clone"})';
+                fi;
+                touch /admin-user.sh; fi;
 
         volumeMounts:
         - name: mysql-persistent-storage
