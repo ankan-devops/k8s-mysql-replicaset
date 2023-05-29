@@ -52,7 +52,7 @@ spec:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
         - name: mysql-script
-          mountPath: /initial-script/mysql-script.sh
+          mountPath: /initial-script
 
       volumes:
         - name: mysql-script
