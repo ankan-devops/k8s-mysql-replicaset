@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-replica
-        image: mysql:8.0.33
+        image: mysql:8.0.33-debian
         resources:
           limits:
             cpu: 512m
@@ -42,13 +42,6 @@ spec:
           /initial-script/mysql-script.sh &
           docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
 
-        # lifecycle:
-        #   postStart:
-        #     exec:
-        #       command:
-        #       - /bin/sh
-        #       - -c
-        #       - sh /initial-script/mysql-script.sh &
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
