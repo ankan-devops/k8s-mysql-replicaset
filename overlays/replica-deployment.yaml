@@ -40,7 +40,7 @@ spec:
         - -c
         - |
           /initial-script/mysql-script.sh &
-          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1));
+          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --server_id=$((${HOSTNAME:14}+1)) --report-host=${HOSTNAME}.mysql-svc;
 
         volumeMounts:
         - name: mysql-persistent-storage
