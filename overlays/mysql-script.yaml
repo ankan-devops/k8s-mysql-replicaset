@@ -11,7 +11,7 @@ data:
     if [ ! -f /var/lib/mysql/admin-user.sh ]; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h mysql-replica-0.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
-    else
-      mysqlsh -h mysql-replica-0.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", {recoveryMethod: "clone"})';
+    # else
+    #   mysqlsh -h mysql-replica-0.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", {recoveryMethod: "clone"})';
     fi;
     touch /var/lib/mysql/admin-user.sh; fi;
