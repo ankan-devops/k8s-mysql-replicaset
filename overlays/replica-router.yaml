@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: mysql-router
-        image: mysql/mysql-router:8.0.15
+        image: mysql/mysql-router:latest
         env:
         - name: MYSQL_HOST
           value: mysql-replica-0.mysql-svc
