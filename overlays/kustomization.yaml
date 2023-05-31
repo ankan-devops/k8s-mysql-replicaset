@@ -3,3 +3,4 @@ resources:
 - replica-deployment.yaml
 - mysql-service.yaml
 - mysql-script.yaml
+- replica-router.yaml
