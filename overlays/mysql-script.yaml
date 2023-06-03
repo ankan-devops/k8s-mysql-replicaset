@@ -7,14 +7,16 @@ metadata:
 data:
   mysql-script.sh: |
     #!/bin/sh
-    sleep 200;
+    sleep 30;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
     else
+      sleep 30;
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: false })';
     fi;
     else
+      sleep 30;
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rejoinInstance("root@'${HOSTNAME}'.mysql-svc", { interactive: false })'
       # if [ $HOSTNAME == 'mysql-replica-0' ]; then
       #   mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage()';
