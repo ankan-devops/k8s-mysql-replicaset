@@ -8,13 +8,17 @@ data:
   mysql-script.sh: |
     #!/bin/sh
     sleep 200;
-    if [ ! -f /var/lib/mysql/admin-user.sh ] && [ $HOSTNAME == 'mysql-replica-0' ]; then
+    if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
+    if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
     else
-      mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", {recoveryMethod: "clone", waitRecovery: false})';
-      if [ $HOSTNAME == 'mysql-replica-0' ]; then
-        mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage()';
-      fi;
+      mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: false })';
     fi;
-    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({interactive:false, addInstances:"auto", removeInstances:"auto"})'
+    else
+      mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rejoinInstance("root@'${HOSTNAME}'.mysql-svc", { interactive: false })'
+      # if [ $HOSTNAME == 'mysql-replica-0' ]; then
+      #   mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage()';
+      # fi;
+    fi;
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
     touch /var/lib/mysql/admin-user.sh;
