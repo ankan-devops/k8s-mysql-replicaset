@@ -21,5 +21,5 @@ data:
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage()';
     fi;
     sleep 45;
-    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto" })'
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstance:"auto"  })'
     touch /var/lib/mysql/admin-user.sh;
