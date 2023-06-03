@@ -21,4 +21,6 @@ data:
     rm -f /var/lib/mysql/admin-user.sh;
     exit 1;
     fi;
+    sleep 10;
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
     touch /var/lib/mysql/admin-user.sh;
