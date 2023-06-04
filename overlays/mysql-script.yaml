@@ -7,7 +7,7 @@ metadata:
 data:
   mysql-script.sh: |
     #!/bin/sh
-    sleep 15;
+    sleep 60;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
@@ -21,6 +21,6 @@ data:
     rm -f /var/lib/mysql/admin-user.sh;
     fi;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
-    sleep 120;
+    sleep 90;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 3 })';
     touch /var/lib/mysql/admin-user.sh;
