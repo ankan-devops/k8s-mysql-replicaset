@@ -22,6 +22,7 @@ data:
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage("testCluster", {force: true})';
     fi;
     fi;
+    sleep 15;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
-    sleep 90;
+    sleep 75;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 0 })';
