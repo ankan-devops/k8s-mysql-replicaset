@@ -42,6 +42,15 @@ spec:
           /initial-script/mysql-script.sh &
           docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$((${HOSTNAME:14}+1)) --report-host=${HOSTNAME}.mysql-svc;
 
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - |
+                mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
+
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
