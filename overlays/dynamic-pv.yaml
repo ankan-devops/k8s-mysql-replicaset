@@ -94,3 +94,11 @@ spec:
     path: /home/ankan/k8s-mysql/3
   mountOptions:
     - nfsvers=4.2
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - minikube-m02
