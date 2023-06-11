@@ -25,8 +25,9 @@ data:
     curl -f -s -I mysql-router:6446;
     while [ $? != 8 ];
     do
-      sleep 5;
+      sleep 7;
       curl -f -s -I mysql-router:6446;
     done;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
+    sleep 5;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 0 })';
