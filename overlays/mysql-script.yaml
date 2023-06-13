@@ -22,12 +22,15 @@ data:
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage("testCluster")';
     fi;
     fi;
-    curl -f -s -I mysql-router:6446;
-    while [ $? != 8 ];
+    while;
     do
-      sleep 3;
       curl -f -s -I mysql-router:6446;
+      if  [ $? != 8 ]; then
+        sleep 3;
+      else
+        mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
+        sleep $(( 105*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        break;
+      fi;
     done;
-    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
-    sleep $(( 17*$(echo $HOSTNAME | tr -dc '[0-9]') ));
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 0 })';
