@@ -14,7 +14,7 @@ spec:
       app: mysql-replica
   updateStrategy:
     type: RollingUpdate
-  minReadySeconds: 100
+  minReadySeconds: 90
   template:
     metadata:
       labels:
