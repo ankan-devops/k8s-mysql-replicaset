@@ -19,6 +19,7 @@ data:
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().removeInstance("root@'${HOSTNAME}'.mysql-svc", { interactive: false, force: true })';
     else
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.rebootClusterFromCompleteOutage("testCluster")';
+      mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
     fi;
     fi;
     while :
@@ -27,8 +28,7 @@ data:
       if  [ $? != 8 ]; then
         sleep 3;
       else
-        #mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
-        sleep $(( 105*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        sleep $(( 15+110*$(echo $HOSTNAME | tr -dc '[0-9]') ));
         break;
       fi;
     done;
