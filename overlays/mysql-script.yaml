@@ -29,7 +29,7 @@ data:
       if  [ $? != 8 ]; then
         sleep 3;
       else
-        sleep $(( 20+120*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        sleep $(( 15+110*$(echo $HOSTNAME | tr -dc '[0-9]') ));
         break;
       fi;
     done;
