@@ -13,7 +13,7 @@ data:
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
     fi;
     touch /var/lib/mysql/admin-user.sh;
-    else
+    elif [ ! -f /var/lib/mysql/temp.sh ]; then
     curl -f -s -I mysql-router:6446;
     if [ $? == 8 ]; then
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().removeInstance("root@'${HOSTNAME}'.mysql-svc", { interactive: false, force: true })';
@@ -22,7 +22,12 @@ data:
       sleep 5;
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
     fi;
+    else
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
+    rm -f /var/lib/mysql/temp.sh;
+    exit;
     fi;
+
     while :
     do
       curl -f -s -I mysql-router:6446;
@@ -33,4 +38,4 @@ data:
         break;
       fi;
     done;
-    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 0 })' && rm -f /var/lib/mysql/admin-user.sh;
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().addInstance("root@'${HOSTNAME}'.mysql-svc", { recoveryMethod: "clone", waitRecovery: 0 })' && touch /var/lib/mysql/temp.sh;
