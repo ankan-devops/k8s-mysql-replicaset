@@ -7,7 +7,7 @@ metadata:
 data:
   mysql-script.sh: |
     #!/bin/sh
-    sleep 60;
+    sleep 30;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
@@ -23,8 +23,8 @@ data:
       mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
     fi;
     else
-    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
     rm -f /var/lib/mysql/temp.sh;
+    mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
     exit;
     fi;
 
@@ -34,7 +34,7 @@ data:
       if  [ $? != 8 ]; then
         sleep 3;
       else
-        sleep $(( 15+110*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        sleep $(( 15+75*$(echo $HOSTNAME | tr -dc '[0-9]') ));
         break;
       fi;
     done;
