@@ -59,9 +59,9 @@ spec:
             - -c
             - |
               mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
-            initialDelaySeconds: 3600
-            periodSeconds: 600
-            failureThreshold: 3
+          initialDelaySeconds: 3600
+          periodSeconds: 600
+          failureThreshold: 3
         
         volumeMounts:
         - name: mysql-persistent-storage
