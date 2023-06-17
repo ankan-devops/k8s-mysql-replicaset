@@ -52,6 +52,17 @@ spec:
               - |
                 mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
 
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - |
+              mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
+            initialDelaySeconds: 3600
+            periodSeconds: 600
+            failureThreshold: 3
+        
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
