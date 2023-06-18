@@ -7,7 +7,7 @@ metadata:
 data:
   mysql-script.sh: |
     #!/bin/sh
-    sleep 45;
+    sleep 30;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
@@ -34,7 +34,7 @@ data:
       if  [ $? != 8 ]; then
         sleep 3;
       else
-        sleep $(( 10+80*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        sleep $(( 10+60*$(echo $HOSTNAME | tr -dc '[0-9]') ));
         break;
       fi;
     done;
