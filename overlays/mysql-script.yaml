@@ -25,7 +25,7 @@ data:
     else
     rm -f /var/lib/mysql/temp.sh;
     mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
-    exit;
+    #exit;
     fi;
 
     while :
