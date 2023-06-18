@@ -50,7 +50,7 @@ spec:
               - /bin/sh
               - -c
               - |
-                mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
+                mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })';
 
         livenessProbe:
           exec:
@@ -58,7 +58,8 @@ spec:
             - /bin/sh
             - -c
             - |
-              mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
+              sleep $(( $(echo $HOSTNAME | tr -dc '[0-9]') ));
+              mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster;
           initialDelaySeconds: 1200
           periodSeconds: 300
           failureThreshold: 2
