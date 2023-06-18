@@ -34,7 +34,7 @@ data:
       if  [ $? != 8 ]; then
         sleep 3;
       else
-        sleep $(( 10+85*$(echo $HOSTNAME | tr -dc '[0-9]') ));
+        sleep $(( 10+80*$(echo $HOSTNAME | tr -dc '[0-9]') ));
         break;
       fi;
     done;
