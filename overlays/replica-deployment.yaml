@@ -8,7 +8,7 @@ metadata:
 
 spec:
   revisionHistoryLimit: 3
-  replicas: 4
+  replicas: 10
   serviceName: "mysql-svc"
   selector:
     matchLabels:
