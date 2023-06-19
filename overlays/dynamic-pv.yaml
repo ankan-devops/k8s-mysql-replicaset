@@ -226,7 +226,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - minikube-m02
+          - minikube-m03
 ---
 apiVersion: v1
 kind: PersistentVolume
