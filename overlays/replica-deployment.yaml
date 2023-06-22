@@ -52,17 +52,17 @@ spec:
               - |
                 mysqlsh -h mysql-router -P 6446 -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().rescan({ interactive:false, addInstances:"auto", removeInstances:"auto" })'
 
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #     - /bin/sh
-        #     - -c
-        #     - |
-        #       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
-        #   initialDelaySeconds: 0
-        #   periodSeconds: 311
-        #   failureThreshold: 4
-        #   timeoutSeconds: 5
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - |
+              mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
+          initialDelaySeconds: 0
+          periodSeconds: 499
+          failureThreshold: 4
+          timeoutSeconds: 5
 
         
         volumeMounts:
