@@ -59,8 +59,8 @@ spec:
             - -c
             - |
               mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
-          initialDelaySeconds: 11
-          periodSeconds: 307
+          initialDelaySeconds: 0
+          periodSeconds: 311
           failureThreshold: 4
           timeoutSeconds: 5
 
