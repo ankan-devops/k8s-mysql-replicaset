@@ -36,7 +36,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-sc
   capacity:
-    storage: 5Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
   nfs:
@@ -61,7 +61,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-sc
   capacity:
-    storage: 5Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
   nfs:
@@ -86,7 +86,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-sc
   capacity:
-    storage: 5Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
   nfs:
@@ -111,7 +111,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: mysql-sc
   capacity:
-    storage: 5Gi
+    storage: 50Gi
   accessModes:
     - ReadWriteOnce
   nfs:
@@ -127,128 +127,5 @@ spec:
           operator: In
           values:
           - minikube-m03
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv5
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-sc
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 192.168.0.121
-    path: /home/ankan/k8s-mysql/5
-  mountOptions:
-    - nfsvers=4.2
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - minikube-m02
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv6
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-sc
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 192.168.0.121
-    path: /home/ankan/k8s-mysql/6
-  mountOptions:
-    - nfsvers=4.2
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - minikube-m03
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv7
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-sc
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 192.168.0.121
-    path: /home/ankan/k8s-mysql/7
-  mountOptions:
-    - nfsvers=4.2
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - minikube-m02
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv8
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-sc
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 192.168.0.121
-    path: /home/ankan/k8s-mysql/8
-  mountOptions:
-    - nfsvers=4.2
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - minikube-m03
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv9
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: mysql-sc
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 192.168.0.121
-    path: /home/ankan/k8s-mysql/9
-  mountOptions:
-    - nfsvers=4.2
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - minikube-m02
+
+
