@@ -62,7 +62,7 @@ spec:
           initialDelaySeconds: 0
           periodSeconds: 223
           failureThreshold: 4
-          timeoutSeconds: 200
+          timeoutSeconds: 60
 
         
         volumeMounts:
