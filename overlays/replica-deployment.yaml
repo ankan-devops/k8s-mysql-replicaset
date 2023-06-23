@@ -8,7 +8,7 @@ metadata:
 
 spec:
   revisionHistoryLimit: 3
-  replicas: 9
+  replicas: 5
   serviceName: "mysql-svc"
   selector:
     matchLabels:
@@ -60,8 +60,8 @@ spec:
             - |
               mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
           initialDelaySeconds: 0
-          periodSeconds: 401
-          failureThreshold: 2
+          periodSeconds: 251
+          failureThreshold: 4
           timeoutSeconds: 30
 
         
