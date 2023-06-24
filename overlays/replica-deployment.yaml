@@ -27,10 +27,10 @@ spec:
         image: mysql:8.0.33
         resources:
           limits:
-            cpu: 300m
+            cpu: 512m
             memory: 1000Mi
           requests:
-            cpu: 256m
+            cpu: 300m
             memory: 950Mi
         ports:
         - containerPort: 3306
