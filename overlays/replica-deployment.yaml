@@ -27,9 +27,11 @@ spec:
         image: mysql:8.0.33
         resources:
           limits:
-            cpu: 512m
+            cpu: 300m
+            memory: 700Mi
           requests:
-            cpu: 312m
+            cpu: 256m
+            memory: 250Mi
         ports:
         - containerPort: 3306
         envFrom:
@@ -59,7 +61,7 @@ spec:
             - -c
             - |
               mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.getCluster().status()' --cluster
-          initialDelaySeconds: 601
+          initialDelaySeconds: 349
           periodSeconds: 293
           failureThreshold: 2
           timeoutSeconds: 60
