@@ -28,10 +28,10 @@ spec:
         resources:
           limits:
             cpu: 300m
-            memory: 700Mi
+            memory: 1000Mi
           requests:
             cpu: 256m
-            memory: 250Mi
+            memory: 950Mi
         ports:
         - containerPort: 3306
         envFrom:
