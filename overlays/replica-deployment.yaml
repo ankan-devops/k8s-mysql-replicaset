@@ -39,7 +39,6 @@ spec:
            name: mysql-secret
 
         command:
-        - ulimit -S -n 20000 && ulimit -H -n 40000
         - /bin/sh
         - -c
         - |

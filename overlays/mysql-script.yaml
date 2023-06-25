@@ -7,6 +7,7 @@ metadata:
 data:
   mysql-script.sh: |
     #!/bin/sh
+    ulimit -S -n 20000 && ulimit -H -n 40000;
     sleep 30;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
