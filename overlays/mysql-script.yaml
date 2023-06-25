@@ -8,7 +8,6 @@ data:
   mysql-script.sh: |
     #!/bin/sh
     sleep 30;
-    ulimit -S -n 20000 && ulimit -H -n 40000;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
