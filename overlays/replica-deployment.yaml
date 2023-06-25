@@ -24,14 +24,14 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-replica
-        image: mysql:8.0.33
+        image: mysql:8
         resources:
           limits:
             cpu: 512m
-            memory: 2048Mi
+            memory: 1500Mi
           requests:
             cpu: 300m
-            memory: 1750Mi
+            memory: 1250Mi
         ports:
         - containerPort: 3306
         envFrom:
@@ -42,8 +42,9 @@ spec:
         - /bin/sh
         - -c
         - |
+          sed -i '4iulimit -S -n 20000 && ulimit -H -n 40000' docker-entrypoint.sh
           /initial-script/mysql-script.sh &
-          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
+          docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
 
         lifecycle:
           preStop:
@@ -90,3 +91,4 @@ spec:
       resources:
         requests:
           storage: 5Gi
+
