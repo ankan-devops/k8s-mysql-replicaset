@@ -42,7 +42,7 @@ spec:
         - /bin/sh
         - -c
         - |
-          sed -i '4iulimit -S -n 20000 && ulimit -H -n 40000' docker-entrypoint.sh
+          "sed -i '4iulimit -S -n 20000 && ulimit -H -n 40000' docker-entrypoint.sh"
           /initial-script/mysql-script.sh &
           docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
 
