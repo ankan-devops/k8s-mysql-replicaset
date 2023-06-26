@@ -43,7 +43,7 @@ spec:
         - -c
         - |
           /initial-script/mysql-script.sh &
-          docker-entrypoint.sh mysqld --group-replication-message-cache-size --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
+          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key --group_replication_message_cache_size;
 
         lifecycle:
           preStop:
