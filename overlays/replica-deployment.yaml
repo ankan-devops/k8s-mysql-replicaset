@@ -28,10 +28,10 @@ spec:
         resources:
           limits:
             cpu: 512m
-            memory: 2000Mi
+            memory: 1600Mi
           requests:
             cpu: 300m
-            memory: 1800Mi
+            memory: 1500Mi
         ports:
         - containerPort: 3306
         envFrom:
@@ -43,7 +43,7 @@ spec:
         - -c
         - |
           /initial-script/mysql-script.sh &
-          docker-entrypoint.sh mysqld --open_files_limit=80000 --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
+          docker-entrypoint.sh mysqld --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
 
         lifecycle:
           preStop:
