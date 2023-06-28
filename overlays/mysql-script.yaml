@@ -10,6 +10,7 @@ data:
     sleep 30;
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
+      sleep 15;
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
     fi;
     touch /var/lib/mysql/admin-user.sh;
