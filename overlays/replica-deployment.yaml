@@ -43,7 +43,7 @@ spec:
         - -c
         - |
           /initial-script/mysql-script.sh &
-          docker-entrypoint.sh mysqld --innodb_redo_log_capacity=1073741824 --table_open_cache=400 --loose_group_replication_message_cache_size=262144000 --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
+          docker-entrypoint.sh mysqld --innodb_redo_log_capacity=1073741824 --table_open_cache=400 --loose_group_replication_message_cache_size=262144000 --socket=/var/lib/mysql/mysql.sock --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
 
         lifecycle:
           preStop:
