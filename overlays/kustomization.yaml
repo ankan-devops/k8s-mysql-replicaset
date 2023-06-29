@@ -1,6 +1,6 @@
 resources:
 - dynamic-pv.yaml
-#- replica-deployment.yaml
+- replica-deployment.yaml
 - mysql-service.yaml
 - mysql-script.yaml
 - replica-router.yaml
