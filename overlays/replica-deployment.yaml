@@ -24,7 +24,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-replica
-        image: mysql:8.0.33
+        image: mysql:latest
         resources:
           limits:
             cpu: 512m

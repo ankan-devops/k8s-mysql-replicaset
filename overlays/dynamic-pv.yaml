@@ -41,7 +41,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/1
+    path: /home/ankan/k8s-mysql/1
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -66,7 +66,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/2
+    path: /home/ankan/k8s-mysql/2
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -91,7 +91,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/3
+    path: /home/ankan/k8s-mysql/3
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -116,7 +116,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/4
+    path: /home/ankan/k8s-mysql/4
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -141,7 +141,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/5
+    path: /home/ankan/k8s-mysql/5
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -166,7 +166,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/6
+    path: /home/ankan/k8s-mysql/6
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -191,7 +191,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/7
+    path: /home/ankan/k8s-mysql/7
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -216,7 +216,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/8
+    path: /home/ankan/k8s-mysql/8
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
@@ -241,7 +241,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 192.168.0.121
-    path: /k8s-mysql/9
+    path: /home/ankan/k8s-mysql/9
   mountOptions:
     - nfsvers=4.2
   nodeAffinity:
