@@ -43,11 +43,7 @@ spec:
         - -c
         - |
           /initial-script/mysql-script.sh &
-          if [[ ! -f /usr/share/mysql-8.0/errmsg.sys ]]; then
-          touch /usr/share/mysql-8.0/errmsg.sys
-          chmod 777 /usr/share/mysql-8.0/errmsg.sys
-          fi
-          docker-entrypoint.sh mysqld --user=mysql --innodb_redo_log_capacity=1073741824 --table_open_cache=400 --loose_group_replication_message_cache_size=262144000 --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
+          docker-entrypoint.sh mysqld --user=mysql --lc_messages=en_US --innodb_redo_log_capacity=1073741824 --table_open_cache=400 --loose_group_replication_message_cache_size=262144000 --binlog_transaction_dependency_tracking=WRITESET --enforce_gtid_consistency=ON --gtid_mode=ON --binlog-checksum=NONE --server_id=$(($(echo $HOSTNAME | tr -dc '[0-9]')+1)) --report-host=${HOSTNAME}.mysql-svc --sql-generate-invisible-primary-key;
 
         lifecycle:
           preStop:
