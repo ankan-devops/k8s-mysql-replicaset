@@ -8,6 +8,7 @@ data:
   mysql-script.sh: |
     #!/bin/sh
     sleep 30;
+    ln -s /var/lib/mysql/mysql.sock /var/run/mysqld/mysqld.sock
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
       sleep 15;
