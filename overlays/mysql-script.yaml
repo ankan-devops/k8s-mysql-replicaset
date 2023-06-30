@@ -11,7 +11,7 @@ data:
     ln -s /var/lib/mysql/mysql.sock /var/run/mysqld/mysqld.sock
     if [ ! -f /var/lib/mysql/admin-user.sh ] ; then
     if [ $HOSTNAME == 'mysql-replica-0' ]; then
-      sleep 10;
+      sleep 15;
       mysqlsh -h ${HOSTNAME}.mysql-svc -u root -p${MYSQL_ROOT_PASSWORD} -e 'dba.createCluster("testCluster")';
     fi;
     touch /var/lib/mysql/admin-user.sh;
